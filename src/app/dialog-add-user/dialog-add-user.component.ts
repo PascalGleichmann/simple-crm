@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { User } from 'src/models/user.class';
 
 @Component({
   selector: 'app-dialog-add-user',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class DialogAddUserComponent {
 
+  user: User = new User();
+  birthDate!: Date;
+
+  saveUser() {
+    this.user.birthDate = this.birthDate.getTime();
+    console.log(this.user);
+  }
 }
