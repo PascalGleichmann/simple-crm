@@ -15,13 +15,14 @@ import { DialogAddUserComponent } from './dialog-add-user/dialog-add-user.compon
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getDatabase, provideDatabase } from '@angular/fire/database';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatNativeDateModule,
     FormsModule,
     MatProgressBarModule,
-    provideFirebaseApp(() => initializeApp({"projectId":"simple-crm-90380","appId":"1:226350014086:web:204e931e27e8faa908fb07","storageBucket":"simple-crm-90380.appspot.com","apiKey":"AIzaSyBKlvMaWOR3QjjGOy2hsnbh_dt6iXwDOj8","authDomain":"simple-crm-90380.firebaseapp.com","messagingSenderId":"226350014086"})),
+    MatCardModule,
+    provideFirebaseApp(() => initializeApp({ "projectId": "simple-crm-90380", "appId": "1:226350014086:web:204e931e27e8faa908fb07", "storageBucket": "simple-crm-90380.appspot.com", "apiKey": "AIzaSyBKlvMaWOR3QjjGOy2hsnbh_dt6iXwDOj8", "authDomain": "simple-crm-90380.firebaseapp.com", "messagingSenderId": "226350014086" })),
     provideFirestore(() => getFirestore()),
     provideDatabase(() => getDatabase()),
   ],
