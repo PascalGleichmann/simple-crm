@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CollectionReference, DocumentData, Firestore, addDoc, collection } from '@angular/fire/firestore';
+import { MatDialogRef } from '@angular/material/dialog';
 import { User } from 'src/models/user.class';
 
 @Component({
@@ -13,7 +14,7 @@ export class DialogAddUserComponent {
   birthDate!: Date;
   usersCollection: CollectionReference<DocumentData>;
 
-  constructor(firestore: Firestore) {
+  constructor(public dialogRef: MatDialogRef<DialogAddUserComponent>, firestore: Firestore) {
     this.usersCollection = collection(firestore, 'users');
   }
 
@@ -24,6 +25,7 @@ export class DialogAddUserComponent {
       .then(() => {
         this.loading = false;
         console.log('Follwoing user was added:', this.user);
+        this.dialogRef.close()
       });
   }
 }
