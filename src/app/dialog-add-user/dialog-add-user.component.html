@@ -16,7 +16,7 @@
 
     <mat-form-field class="full-width" appearance="outline">
         <mat-label>Birth date</mat-label>
-        <input matInput [matDatepicker]="picker" [(ngModel)]="user.birthDate">
+        <input matInput [matDatepicker]="picker" [(ngModel)]="birthDate" type="date">
         <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
@@ -31,7 +31,7 @@
     <div class="dialog-input-container">
         <mat-form-field appearance="outline">
             <mat-label>Zip code</mat-label>
-            <input matInput [(ngModel)]="user.zipCode">
+            <input matInput [(ngModel)]="user.zipCode" type="number">
             <!-- <mat-hint>Please enter the zip code of your city</mat-hint> -->
         </mat-form-field>
 
