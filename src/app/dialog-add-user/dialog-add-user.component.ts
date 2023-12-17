@@ -9,6 +9,7 @@ import { User } from 'src/models/user.class';
 })
 export class DialogAddUserComponent {
   user: User = new User();
+  loading: boolean = false;
   birthDate!: Date;
   usersCollection: CollectionReference<DocumentData>;
 
@@ -18,8 +19,10 @@ export class DialogAddUserComponent {
 
   saveUser() {
     this.user.birthDate = this.birthDate.getTime();
+    this.loading = true;
     addDoc(this.usersCollection, this.user.toJSON())
       .then(() => {
+        this.loading = false;
         console.log('Follwoing user was added:', this.user);
       });
   }
