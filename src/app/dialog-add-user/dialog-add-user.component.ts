@@ -14,7 +14,7 @@ export class DialogAddUserComponent {
   birthDate!: Date;
   usersCollection: CollectionReference<DocumentData>;
 
-  constructor(public dialogRef: MatDialogRef<DialogAddUserComponent>, firestore: Firestore) {
+  constructor(public dialogRef: MatDialogRef<DialogAddUserComponent>, private firestore: Firestore) {
     this.usersCollection = collection(firestore, 'users');
   }
 
