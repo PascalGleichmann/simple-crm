@@ -1,6 +1,11 @@
 .dialog-input-container {
     display: flex;
     justify-content: space-between;
+    gap: 16px;
+}
+
+.mat-mdc-form-field {
+    display: initial !important;
 }
 
 .mat-dialog-content {
