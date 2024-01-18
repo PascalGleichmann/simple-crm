@@ -19,7 +19,10 @@ export class UserComponent {
     this.unsubUsers = onSnapshot(q, (querySnapshot) => {
       this.allUsers = [];
       querySnapshot.forEach((doc) => {
-        this.allUsers.push(doc.data())});
+        const user = doc.data();
+        user['customId'] = doc.id;
+        this.allUsers.push(user)
+      });
       console.log("Current users: ", this.allUsers);
     })
   }
