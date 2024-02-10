@@ -11,7 +11,7 @@ export class UserDetailComponent {
 
   usersCollection: CollectionReference<DocumentData>;
   userID: any;
-  currentUser: any;
+  currentUser: any = ``;
 
   constructor(private route: ActivatedRoute, private firestore: Firestore) {
     this.usersCollection = collection(firestore, 'users');
@@ -26,7 +26,7 @@ export class UserDetailComponent {
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
+      console.log("User data:", docSnap.data());
       this.currentUser = docSnap.data();
     } else {
       // docSnap.data() will be undefined in this case
