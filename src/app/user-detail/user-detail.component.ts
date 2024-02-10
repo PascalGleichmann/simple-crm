@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { CollectionReference, DocumentData, Firestore, collection, doc, getDoc } from '@angular/fire/firestore';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-detail',
@@ -7,4 +9,28 @@ import { Component } from '@angular/core';
 })
 export class UserDetailComponent {
 
+  usersCollection: CollectionReference<DocumentData>;
+  userID: any;
+  currentUser: any;
+
+  constructor(private route: ActivatedRoute, private firestore: Firestore) {
+    this.usersCollection = collection(firestore, 'users');
+    this.route.paramMap.subscribe(paramMap => {
+      this.userID = paramMap.get('id');
+      this.getUser();
+    })
+  }
+
+  async getUser() {
+    const docRef = doc(this.usersCollection, this.userID);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
+      this.currentUser = docSnap.data();
+    } else {
+      // docSnap.data() will be undefined in this case
+      console.log("No such document!");
+    }
+  }
 }

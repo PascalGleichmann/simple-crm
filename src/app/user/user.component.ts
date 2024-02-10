@@ -11,19 +11,22 @@ import { CollectionReference, DocumentData, Firestore, collection, doc, getDocs,
 export class UserComponent {
   usersCollection: CollectionReference<DocumentData>;
   allUsers: any;
-  unsubUsers;
+  unsubUsers: any;
 
   constructor(public dialog: MatDialog, private firestore: Firestore) {
     this.usersCollection = collection(firestore, 'users');
     const q = query(this.usersCollection)
-    this.unsubUsers = onSnapshot(q, (querySnapshot) => {
+    this.getAllUsers(q);
+  }
+
+  getAllUsers(queryCollection: any) {
+    this.unsubUsers = onSnapshot(queryCollection, (querySnapshot: any) => {
       this.allUsers = [];
-      querySnapshot.forEach((doc) => {
+      querySnapshot.forEach((doc: any) => {
         const user = doc.data();
         user['customId'] = doc.id;
         this.allUsers.push(user)
       });
-      console.log("Current users: ", this.allUsers);
     })
   }
 
