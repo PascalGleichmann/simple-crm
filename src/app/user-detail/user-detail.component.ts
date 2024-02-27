@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { CollectionReference, DocumentData, Firestore, collection, doc, getDoc } from '@angular/fire/firestore';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/models/user.class';
+import { DialogEditAddressComponent } from '../dialog-edit-address/dialog-edit-address.component';
+import { DialogEditHeaderComponent } from '../dialog-edit-header/dialog-edit-header.component';
 
 @Component({
   selector: 'app-user-detail',
@@ -14,7 +17,7 @@ export class UserDetailComponent {
   userID: any;
   currentUser: User = new User();
 
-  constructor(private route: ActivatedRoute, private firestore: Firestore) {
+  constructor(public dialog: MatDialog, private route: ActivatedRoute, private firestore: Firestore) {
     this.usersCollection = collection(firestore, 'users');
     this.route.paramMap.subscribe(paramMap => {
       this.userID = paramMap.get('id');
@@ -35,6 +38,11 @@ export class UserDetailComponent {
     }
   }
 
-  editMenu() {
+  editHeader() {
+    this.dialog.open(DialogEditHeaderComponent)
+  }
+
+  editAddress() {
+    this.dialog.open(DialogEditAddressComponent)
   }
 }
