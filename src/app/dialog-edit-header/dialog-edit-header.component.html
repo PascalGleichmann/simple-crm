@@ -1,1 +1,28 @@
-<p>dialog-edit-header works!</p>
+<mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+<h1 mat-dialog-title>Edit user header</h1>
+<div mat-dialog-content class="mat-dialog-content">
+    <div class="dialog-input-container">
+        <mat-form-field appearance="outline">
+            <mat-label>First name</mat-label>
+            <input matInput [(ngModel)]="user.firstName" [disabled]="loading">
+            <!-- <mat-hint>Please enter your first name</mat-hint> -->
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Last name</mat-label>
+            <input matInput [(ngModel)]="user.lastName" [disabled]="loading">
+            <!-- <mat-hint>Please enter your last name</mat-hint> -->
+        </mat-form-field>
+    </div>
+
+    <mat-form-field class="full-width" appearance="outline">
+        <mat-label>E-Mail</mat-label>
+        <input matInput [(ngModel)]="user.email" [disabled]="loading">
+        <!-- <mat-hint>Please enter your email adress</mat-hint> -->
+    </mat-form-field>
+
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button (click)="saveUser()" cdkFocusInitial>Save</button>
+</div>

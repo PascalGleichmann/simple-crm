@@ -39,10 +39,12 @@ export class UserDetailComponent {
   }
 
   editHeader() {
-    this.dialog.open(DialogEditHeaderComponent)
+    let dialog = this.dialog.open(DialogEditHeaderComponent);
+    dialog.componentInstance.user = this.currentUser;
   }
 
   editAddress() {
-    this.dialog.open(DialogEditAddressComponent)
+    let dialog = this.dialog.open(DialogEditAddressComponent);
+    dialog.componentInstance.user = this.currentUser;
   }
 }
