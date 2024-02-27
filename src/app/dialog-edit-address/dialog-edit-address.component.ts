@@ -25,7 +25,6 @@ export class DialogEditAddressComponent {
     setDoc(docRef, this.user.toJSON())
       .then(() => {
         this.loading = false;
-        console.log('Follwoing user data was updated:', this.user);
         this.dialogRef.close()
       });
   }

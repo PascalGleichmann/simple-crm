@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CollectionReference, DocumentData, Firestore, collection, doc, getDoc } from '@angular/fire/firestore';
+import { CollectionReference, DocumentData, Firestore, collection, doc, getDoc, onSnapshot } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/models/user.class';
@@ -25,17 +25,10 @@ export class UserDetailComponent {
     })
   }
 
-  async getUser() {
-    const docRef = doc(this.usersCollection, this.userID);
-    const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-      console.log("User data:", docSnap.data());
-      this.user = new User(docSnap.data());
-    } else {
-      // docSnap.data() will be undefined in this case
-      console.log("No such document!");
-    }
+  getUser() {
+    const unsub = onSnapshot(doc(this.usersCollection, this.userID), (doc) => {
+      this.user = new User(doc.data());
+    });
   }
 
   editHeader() {
