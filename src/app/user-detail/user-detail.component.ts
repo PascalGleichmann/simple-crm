@@ -35,6 +35,6 @@ export class UserDetailComponent {
     }
   }
 
-  openAddressDialog() {
+  editMenu() {
   }
 }
