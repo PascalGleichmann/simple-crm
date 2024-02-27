@@ -21,6 +21,14 @@
         <!-- <mat-hint>Please enter your email adress</mat-hint> -->
     </mat-form-field>
 
+    <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Birth date</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="birthDate" type="datetime" [disabled]="loading">
+        <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
 </div>
 <div mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancel</button>

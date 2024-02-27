@@ -15,7 +15,7 @@ export class UserDetailComponent {
 
   usersCollection: CollectionReference<DocumentData>;
   userID: any;
-  currentUser: User = new User();
+  user: User = new User();
 
   constructor(public dialog: MatDialog, private route: ActivatedRoute, private firestore: Firestore) {
     this.usersCollection = collection(firestore, 'users');
@@ -31,7 +31,7 @@ export class UserDetailComponent {
 
     if (docSnap.exists()) {
       console.log("User data:", docSnap.data());
-      this.currentUser = new User(docSnap.data());
+      this.user = new User(docSnap.data());
     } else {
       // docSnap.data() will be undefined in this case
       console.log("No such document!");
@@ -40,11 +40,13 @@ export class UserDetailComponent {
 
   editHeader() {
     let dialog = this.dialog.open(DialogEditHeaderComponent);
-    dialog.componentInstance.user = this.currentUser;
+    dialog.componentInstance.user = new User(this.user.toJSON());
+    dialog.componentInstance.userID = this.userID;
   }
 
   editAddress() {
     let dialog = this.dialog.open(DialogEditAddressComponent);
-    dialog.componentInstance.user = this.currentUser;
+    dialog.componentInstance.user = new User(this.user.toJSON());
+    dialog.componentInstance.userID = this.userID;
   }
 }
