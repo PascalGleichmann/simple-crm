@@ -34,7 +34,7 @@ export class UserComponent {
     this.unsubUsers();
   }
 
-  openDialog() {
+  openAddUserDialog() {
     this.dialog.open(DialogAddUserComponent);
   }
 

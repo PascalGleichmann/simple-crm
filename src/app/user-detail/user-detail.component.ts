@@ -34,4 +34,7 @@ export class UserDetailComponent {
       console.log("No such document!");
     }
   }
+
+  openAddressDialog() {
+  }
 }
