@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CollectionReference, DocumentData, Firestore, collection, doc, getDoc } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
+import { User } from 'src/models/user.class';
 
 @Component({
   selector: 'app-user-detail',
@@ -11,7 +12,7 @@ export class UserDetailComponent {
 
   usersCollection: CollectionReference<DocumentData>;
   userID: any;
-  currentUser: any = ``;
+  currentUser: User = new User();
 
   constructor(private route: ActivatedRoute, private firestore: Firestore) {
     this.usersCollection = collection(firestore, 'users');
@@ -27,7 +28,7 @@ export class UserDetailComponent {
 
     if (docSnap.exists()) {
       console.log("User data:", docSnap.data());
-      this.currentUser = docSnap.data();
+      this.currentUser = new User(docSnap.data());
     } else {
       // docSnap.data() will be undefined in this case
       console.log("No such document!");
